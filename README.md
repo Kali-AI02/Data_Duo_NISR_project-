@@ -46,14 +46,14 @@ We chose **Track 1: Data for Export Growth**, where the challenge is to **identi
 
 ## 🚀 Tech Stack  
 - **Languages**: Python (Pandas, NumPy, Scikit-learn, TensorFlow/PyTorch)  
-- **Visualization**: Dash/Plotly, Power BI, Streamlit, Matplotlib/Seaborn  
-- **Data**: UN Comtrade API, World Bank, ITC Trade Map, NISR datasets  
-- **Collaboration**: GitHub, Google Colab, Jupyter Notebooks  
+- **Visualization**: Dash/Plotly, Streamlit, Matplotlib/Seaborn  
+- **Data**:  NISR datasets  
+- **Collaboration**: GitHub, Jupyter Notebooks  
 
 ---
 
 ## 👥 Team  
-- [Data Duos]  
+### Team name: [Data Duos]  
 - Iradukunda Elysee
 - Gihozo Christian 
 
