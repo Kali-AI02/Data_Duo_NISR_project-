@@ -19,16 +19,16 @@ We chose **Track 1: Data for Export Growth**, where the challenge is to **identi
 
 ## 🛠️ Methodology  
 1. **Data Collection**  
-   - Sources: UN Comtrade, ITC Trade Map, World Bank, NISR datasets, etc.  
+   - Sources:  NISR datasets.  
 2. **Data Preprocessing & Cleaning**  
-   - Handling missing values, harmonizing trade codes, formatting.  
+   - Handling missing values, harmonizing trade codes and formatting.  
 3. **Exploratory Data Analysis (EDA)**  
    - Export/import trends, sector performance, country demand analysis.  
 4. **Machine Learning Models**  
    - Time series forecasting (ARIMA, Prophet, LSTM).  
    - Regression models to predict demand.  
 5. **Visualization & Tools**  
-   - Dash/Plotly, Power BI, Tableau, or Streamlit.  
+   - Dash/Plotly or Streamlit.  
    - Mobile-friendly notifications or alert system.  
 6. **Insights & Recommendations**  
    - Identify sectors with strong growth potential.  
@@ -45,7 +45,7 @@ We chose **Track 1: Data for Export Growth**, where the challenge is to **identi
 ---
 
 ## 🚀 Tech Stack  
-- **Languages**: Python (Pandas, NumPy, Scikit-learn, TensorFlow/PyTorch), R (optional)  
+- **Languages**: Python (Pandas, NumPy, Scikit-learn, TensorFlow/PyTorch)  
 - **Visualization**: Dash/Plotly, Power BI, Streamlit, Matplotlib/Seaborn  
 - **Data**: UN Comtrade API, World Bank, ITC Trade Map, NISR datasets  
 - **Collaboration**: GitHub, Google Colab, Jupyter Notebooks  
@@ -53,8 +53,9 @@ We chose **Track 1: Data for Export Growth**, where the challenge is to **identi
 ---
 
 ## 👥 Team  
-- [Your Team Name]  
-- Members: [List names + roles]  
+- [Data Duos]  
+- Iradukunda Elysee
+- Gihozo Christian 
 
 ---
 
