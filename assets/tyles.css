@@ -1,0 +1,33 @@
+/* Navbar style */
+.custom-navbar {
+    background: white !important;
+    border-bottom: 1px solid #eaeaea !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08) !important;
+    padding: 1rem 2rem !important;  /* increased height */
+    min-height: 70px !important;    /* taller bar */
+}
+
+/* Right nav buttons */
+.right-nav .nav-link {
+    color: #333 !important;
+    margin: 0 8px !important;
+    font-weight: 500;
+}
+
+.right-nav .nav-link.active {
+    background: #0a2441 !important;
+    color: white !important;
+    border-radius: 20px !important;
+    padding: 6px 14px !important;
+}
+
+/* Language dropdown above nav buttons */
+.language-dropdown .dropdown-toggle {
+    background: #f8f9fa !important;
+    border: 1px solid #dee2e6 !important;
+    color: #2f4ea1 !important;
+    font-size: 13px !important;
+    border-radius: 15px !important;
+    padding: 4px 10px !important;
+    margin-bottom: 6px !important;  /* spacing between language and nav buttons */
+}
