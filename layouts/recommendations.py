@@ -1,13 +1,12 @@
 
-# layouts/recommendations.py
-from dash import html
+# layouts/recommendations.pyfrom dash import html
 import dash_bootstrap_components as dbc
 
 
 def get_recommendations_layout():
     layout = []
 
-    # Introduction
+
     layout.append(
         html.Div([
             html.H2(" Interventions for Addressing Micronutrient Deficiencies and Stunting", style={"marginBottom": "15px"}),
@@ -19,7 +18,7 @@ def get_recommendations_layout():
         ], style={"marginBottom": "30px"})
     )
 
-    # Health Sector
+   
     layout.append(
         dbc.Card([
             dbc.CardHeader(html.H3("💉 Health Sector Interventions")),
@@ -38,7 +37,7 @@ def get_recommendations_layout():
         ], style={"marginBottom": "20px"})
     )
 
-    # Agriculture Sector
+   
     layout.append(
         dbc.Card([
             dbc.CardHeader(html.H3("🌱 Agriculture Sector Interventions")),
@@ -55,7 +54,7 @@ def get_recommendations_layout():
         ], style={"marginBottom": "20px"})
     )
 
-    # Education Sector
+  
     layout.append(
         dbc.Card([
             dbc.CardHeader(html.H3("🎓 Education Sector Interventions")),
@@ -72,7 +71,7 @@ def get_recommendations_layout():
         ], style={"marginBottom": "20px"})
     )
 
-    # Conclusion
+    
     layout.append(
         html.Div([
             html.P(
