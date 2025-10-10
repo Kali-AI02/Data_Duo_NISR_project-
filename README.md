@@ -71,3 +71,4 @@ You can view the interactive dashboard [here](https://data-duo-nisr-project.onre
 1. Clone this repository:  
    ```bash
    git clone https://github.com/Kali-AI02/Data_Duo_NISR_project-.git
+   cd Data_Duo_NISR_project-
