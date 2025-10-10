@@ -4,11 +4,10 @@ import plotly.express as px
 from dash import dcc, html
 
 def get_layout():
-    # ===== Step 1 — Load dataset =====
+  
     fn = r"C:\Users\user\Desktop\Elysee\Data_Duo_NISR_project-\assets\nisr_dataset1.csv"  # update path
     df_clean = pd.read_csv(fn)
 
-    # ===== Step 2 — Calculate stunting rate by district =====
     district_stunting = (
         df_clean
         .groupby("district_code")["height_for_age_zscore"]
@@ -17,7 +16,7 @@ def get_layout():
     )
     district_stunting["stunting_rate"] *= 100
 
-    # ===== Step 3 — Map district codes to names =====
+   
     district_map = {
         11: "Nyarugenge", 12: "Gasabo", 13: "Kicukiro",
         21: "Nyanza", 22: "Gisagara", 23: "Nyaruguru", 24: "Huye",
@@ -30,12 +29,12 @@ def get_layout():
     }
     district_stunting["district_name"] = district_stunting["district_code"].map(district_map)
 
-    # ===== Step 4 — Load Rwanda map =====
+  
     geo_path = r"C:\Users\user\Desktop\NISR\Hackthon\geoBoundaries-RWA-ADM2 (1).geojson"
     gdf = gpd.read_file(geo_path)
     gdf = gdf.set_crs("EPSG:4326") if gdf.crs is None else gdf
 
-    # ===== Step 5 — Clean names and merge =====
+ 
     gdf['shapeName_clean'] = gdf['shapeName'].str.strip().str.lower()
     district_stunting['district_name_clean'] = district_stunting['district_name'].str.strip().str.lower()
 
@@ -46,7 +45,6 @@ def get_layout():
         how='left'
     )
 
-    # ===== Step 6 — Create Plotly map =====
     rwanda_geojson = gdf.__geo_interface__
 
     fig = px.choropleth_map(
