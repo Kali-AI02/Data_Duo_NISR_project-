@@ -1,10 +1,8 @@
-# chatbot.py
+
 from dash import html, dcc
 from dash.dependencies import Input, Output, State
 
-# ===============================
-# Chatbot components
-# ===============================
+
 chatbot_btn = html.Button("AI Chat", id="chat-btn", n_clicks=0,
     style={"position": "fixed", "bottom": "20px", "right": "20px",
            "borderRadius": "50%", "padding": "15px 20px",
@@ -31,9 +29,7 @@ chatbot_box = html.Div(id="chat-box", children=[
           "borderRadius": "10px", "padding": "0px", "display": "none",
           "boxShadow": "0px 0px 15px rgba(0,0,0,0.3)", "zIndex": "998"})
 
-# ===============================
-# Feature explanations
-# ===============================
+
 FEATURE_EXPLANATIONS = {
     "wealth_index": "Wealth Index indicates the household's economic status, from poorest to richest.",
     "mother_education_level": "Mother's Education Level shows the highest schooling level the mother completed.",
@@ -44,9 +40,7 @@ FEATURE_EXPLANATIONS = {
     "region_code": "Region Code identifies the geographic region of the household in Rwanda."
 }
 
-# ===============================
-# Register callbacks
-# ===============================
+
 def register_callbacks(app, FEATURES):
     @app.callback(
         Output("chat-box", "style"),
@@ -77,7 +71,6 @@ def register_callbacks(app, FEATURES):
         if not msg:
             return messages, "", scroll_data
 
-        # Display user's message
         messages.append(html.Div(msg, style={
             "alignSelf": "flex-end", "backgroundColor": "#007bff",
             "color": "white", "padding": "8px", "borderRadius": "10px",
