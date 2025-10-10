@@ -1,4 +1,4 @@
-# layouts/stunting.py
+
 from dash import html, dcc, Input, Output
 import dash_bootstrap_components as dbc
 import pandas as pd
@@ -7,19 +7,12 @@ import plotly.express as px
 import plotly.graph_objects as go
 from scipy.stats import chi2_contingency
 
-# ===============================
-# Load Cleaned Dataset
-# ===============================
-df_clean = pd.read_csv("assets/df_clean.csv")  # use relative path for deployment
+df_clean = pd.read_csv("assets/df_clean.csv") 
 
-# ===============================
-# Compute Stunting Indicator
-# ===============================
+
 df_clean["stunted"] = (df_clean["height_for_age_zscore"] < -2).astype(int)
 
-# ===============================
-# Helper: Interactive Pie Chart
-# ===============================
+
 def create_interactive_pie(df):
     stunting_counts = df["stunted"].value_counts().rename({0: "Not Stunted", 1: "Stunted"})
     pie_df = stunting_counts.reset_index()
@@ -47,9 +40,7 @@ def create_interactive_pie(df):
     )
     return fig
 
-# ===============================
-# Helper: Factor Importance
-# ===============================
+
 def calculate_factor_importance(df):
     factors = {
         "child_sex": "Child Sex",
@@ -90,9 +81,7 @@ def calculate_factor_importance(df):
     importance_df = importance_df.sort_values("Impact_Difference_%", ascending=False)
     return importance_df
 
-# ===============================
-# Helper: Bar Chart for Factor Importance
-# ===============================
+
 def create_factor_bar_chart(importance_df, top_n=10):
     top_factors = importance_df.head(top_n)
     colors = ["#2ecc71" if sig == "Yes" else "#e74c3c" for sig in top_factors["Significant"]]
@@ -113,15 +102,10 @@ def create_factor_bar_chart(importance_df, top_n=10):
     )
     return fig
 
-# ===============================
-# Precompute Factor Importance
-# ===============================
 importance_df = calculate_factor_importance(df_clean)
 factor_bar_fig = create_factor_bar_chart(importance_df)
 
-# ===============================
-# Layout for Stunting Page
-# ===============================
+
 def get_layout():
     weighted_rate = (df_clean["stunted"] * df_clean["weight"]).sum() / df_clean["weight"].sum() * 100
     unweighted_rate = df_clean["stunted"].mean() * 100
@@ -130,7 +114,7 @@ def get_layout():
     layout = dbc.Container([
         html.H3("Stunting Analysis in Rwanda", className="text-center mb-4"),
 
-        # Row 1: Pie chart and summary
+    
         dbc.Row([
             dbc.Col(
                 dbc.Card([
@@ -158,7 +142,6 @@ def get_layout():
             )
         ], className="mb-4"),
 
-        # Row 2: Factor importance bar chart
         dbc.Row([
             dbc.Col(
                 dbc.Card([
@@ -173,11 +156,6 @@ def get_layout():
 
     return layout
 
-# ===============================
-# Callback for Pie Slice Click
-# ===============================
-# Remove the @app.callback decorator here.
-# Instead, define a function that returns the output and register callback in app.py
 def register_callbacks_stunting(app):
     @app.callback(
         Output("stunting-click-info", "children"),
