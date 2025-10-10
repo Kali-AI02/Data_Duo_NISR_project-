@@ -1,39 +1,28 @@
-# app.py
+
 import base64
 import joblib
 import pandas as pd
 from dash import Dash, html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
 
-# ===============================
-# Import layouts and recommendations
-# ===============================
+
 from layouts import stunting, mal
 from layouts.recommendations import get_recommendations_layout
 from layouts.model import get_layout as get_layout_model, FEATURES
 from layouts.overview import get_layout_overview
 from layouts.hotspot import get_layout as get_layout_hotspot
 
-# ===============================
-# Import chatbot
-# ===============================
 from chatbot import chatbot_btn, chatbot_box, register_callbacks
 
-# ===============================
-# Create Dash app
-# ===============================
+
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
 server = app.server
 app.title = "Rwanda Malnutrition Dashboard"
 
-# ===============================
-# Register chatbot callbacks
-# ===============================
+
 register_callbacks(app, FEATURES)
 
-# ===============================
-# Load trained predictive model
-# ===============================
+
 MODEL_PATH = "assets/best_stunting_model_hgb_no_impute.joblib"
 LOGO_PATH = "assets/nisr_logo.png"
 
@@ -50,9 +39,7 @@ try:
 except Exception:
     logo_data = ""
 
-# ===============================
-# Navbar
-# ===============================
+
 navbar = dbc.Navbar(
     dbc.Container([
         html.Div([html.Img(src=f'data:image/png;base64,{logo_data}' if logo_data else None,
@@ -80,14 +67,10 @@ navbar = dbc.Navbar(
     color="light", dark=False, sticky="top"
 )
 
-# ===============================
-# Recommendations Layout
-# ===============================
+
 recommendations_layout = get_recommendations_layout()
 
-# ===============================
-# App Layout
-# ===============================
+
 app.layout = html.Div([
     dcc.Location(id="url"),
     navbar,
@@ -98,9 +81,6 @@ app.layout = html.Div([
     html.Div(id="scroll-dummy", style={"display": "none"})
 ])
 
-# ===============================
-# Page routing callback
-# ===============================
 @app.callback(
     Output("page-content", "children"),
     Input("url", "pathname")
@@ -122,9 +102,7 @@ def render_page(pathname):
             html.P("Explore insights: Overview, Hotspots, Models, and Recommendations.")
         ], style={"padding": "20px"})
 
-# ===============================
-# Predictive Model Callback
-# ===============================
+
 @app.callback(
     Output("prediction-output", "children"),
     Input("predict-btn", "n_clicks"),
@@ -146,13 +124,9 @@ def predict_stunting(n_clicks, *values):
     except Exception as e:
         return f"Error predicting: {e}"
 
-# ===============================
-# Register Stunting Callbacks (from layouts/stunting.py)
-# ===============================
+
 stunting.register_callbacks_stunting(app)
 
-# ===============================
-# Run app
-# ===============================
+
 if __name__ == "__main__":
     app.run(debug=False)
