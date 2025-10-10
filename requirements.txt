@@ -5,3 +5,9 @@ numpy
 joblib
 gunicorn
 scipy
+geopandas
+fiona
+shapely
+pyproj
+rtree
+
