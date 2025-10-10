@@ -1,4 +1,4 @@
-# layouts/overview.py
+
 import os
 import pandas as pd
 import plotly.express as px
@@ -6,22 +6,18 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc
 
 def get_layout_overview():
-    # ===============================
-    # Load dataset (relative path)
-    # ===============================
+    
     current_dir = os.path.dirname(__file__)
     fn = os.path.join(current_dir, "..", "assets", "nisr_dataset1.csv")
     df = pd.read_csv(fn)
 
-    # Convert z-scores to decimals
+   
     df['height_for_age_zscore'] = df['height_for_age_zscore'] / 100
     df['weight_for_age_zscore'] = df['weight_for_age_zscore'] / 100
     df['weight_for_height_zscore'] = df['weight_for_height_zscore'] / 100
     df['bmi_for_age_zscore'] = df['bmi_for_age_zscore'] / 100
 
-    # ===============================
-    # Define malnutrition
-    # ===============================
+   
     df['malnourished'] = (
         (df['height_for_age_zscore'] < -2) |
         (df['weight_for_age_zscore'] < -2) |
@@ -29,9 +25,7 @@ def get_layout_overview():
         (df['bmi_for_age_zscore'] < -2)
     )
 
-    # ===============================
-    # Pie Chart — Overall Malnutrition %
-    # ===============================
+
     malnutrition_counts = df['malnourished'].value_counts(normalize=True) * 100
     labels = ['Malnourished', 'Not Malnourished']
     values = [malnutrition_counts.get(True, 0), malnutrition_counts.get(False, 0)]
@@ -44,9 +38,7 @@ def get_layout_overview():
         title="Overall Malnutrition Percentage"
     )
 
-    # ===============================
-    # Bar Chart — Top 10 Districts by Malnutrition %
-    # ===============================
+    
     district_map = {
         11: "Nyarugenge", 12: "Gasabo", 13: "Kicukiro",
         21: "Nyanza", 22: "Gisagara", 23: "Nyaruguru", 24: "Huye",
@@ -82,9 +74,6 @@ def get_layout_overview():
         template='plotly_white'
     )
 
-    # ===============================
-    # Build Layout
-    # ===============================
     layout = dbc.Container([
         html.H3("🩺 Malnutrition Overview"),
         html.P("Overall malnutrition and top districts by prevalence."),
