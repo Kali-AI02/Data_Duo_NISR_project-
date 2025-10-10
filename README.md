@@ -47,9 +47,7 @@ We chose **Track 2: Ending Hidden Hunger**, where the challenge is to **address 
 ---
 
 ## 🌐 Dashboard Access  
-You can view the interactive dashboard [here](https://your-dashboard-link.com)  
-
-> Replace the link above with your deployed Dash app URL.
+You can view the interactive dashboard [here](https://data-duo-nisr-project.onrender.com)  
 
 ---
 
@@ -73,8 +71,3 @@ You can view the interactive dashboard [here](https://your-dashboard-link.com)
 1. Clone this repository:  
    ```bash
    git clone https://github.com/Kali-AI02/Data_Duo_NISR_project-.git
-   cd Data_Duo_NISR_project-
-
-pip install -r requirements.txt
-python app.py
-
