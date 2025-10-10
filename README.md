@@ -28,9 +28,9 @@ We chose **Track 2: Ending Hidden Hunger**, where the challenge is to **address 
    - Model to predict stunting risk using Random Forest.  
 5. **Visualization & Tools**  
    - Interactive charts:  
-     - Pie chart for overall malnutrition.  
-     - Bar chart for age/districts/causes.  
-     - Geospatial mapping for hotspots using Rwanda district shapefiles.  
+     - Pie chart for overall malnutrition  
+     - Bar chart for age/districts/causes  
+     - Geospatial mapping for hotspots using Rwanda district shapefiles  
 6. **Insights & Recommendations**  
    - Identify root causes and high-risk areas.  
    - Provide sector-specific interventions and policy briefs.  
@@ -51,7 +51,7 @@ You can view the interactive dashboard [here](https://data-duo-nisr-project.onre
 ---
 
 ## 🚀 Tech Stack  
-- **Languages**: Python 
+- **Languages**: Python (Pandas, NumPy, Scikit-learn)  
 - **Visualization**: Plotly Express, Matplotlib  
 - **Web Framework**: Dash, Dash Bootstrap Components  
 - **Data**: NISR datasets (RDHS-based CSV files)  
