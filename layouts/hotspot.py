@@ -10,22 +10,20 @@ import dash_bootstrap_components as dbc
 # Malnutrition Hotspot Layout Function
 # ===================================================
 def get_layout():
-    # ===== Step 1 — Load and prepare dataset =====
     current_dir = os.path.dirname(__file__)
-    fn = os.path.join(current_dir, "..", "assets", "nisr_dataset1.csv")
 
-    try:
-        df_clean = pd.read_csv(fn)
-    except Exception as e:
+    # ===== Step 1 — Load and prepare dataset =====
+    dataset_path = os.path.join(current_dir, "..", "assets", "nisr_dataset1.csv")
+    if not os.path.exists(dataset_path):
         return html.Div([
             html.H3("Error loading dataset"),
-            html.P(str(e))
+            html.P(f"File not found: {dataset_path}")
         ])
 
-    # Ensure z-scores are numeric
-    df_clean['height_for_age_zscore'] = pd.to_numeric(df_clean['height_for_age_zscore'], errors='coerce')
+    df_clean = pd.read_csv(dataset_path)
 
-    # Rescale z-scores if needed (values are multiplied by 100)
+    # Ensure z-scores are numeric and rescale if needed
+    df_clean['height_for_age_zscore'] = pd.to_numeric(df_clean['height_for_age_zscore'], errors='coerce')
     if df_clean['height_for_age_zscore'].abs().max() > 10:
         df_clean['height_for_age_zscore'] = df_clean['height_for_age_zscore'] / 100
 
@@ -57,15 +55,16 @@ def get_layout():
     district_stunting["district_name"] = district_stunting["district_code"].map(district_map)
 
     # ===== Step 4 — Load Rwanda GeoJSON map =====
-    geo_path = os.path.join(current_dir, "..", "assets", "geoBoundaries-RWA-ADM2.geojson")
-    try:
-        gdf = gpd.read_file(geo_path)
-    except Exception as e:
+    geojson_path = os.path.join(current_dir, "..", "assets", "geoBoundaries-RWA-ADM2 (1).geojson")
+
+    
+    if not os.path.exists(geojson_path):
         return html.Div([
             html.H3("Error loading GeoJSON map"),
-            html.P(str(e))
+            html.P(f"File not found: {geojson_path}")
         ])
 
+    gdf = gpd.read_file(geojson_path)
     if gdf.crs is None:
         gdf = gdf.set_crs("EPSG:4326")
 
