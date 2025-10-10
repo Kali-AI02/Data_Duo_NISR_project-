@@ -1,7 +1,7 @@
 # NISR 2025 Big Data Hackathon – Track 2: Ending Hidden Hunger  
 
 ## 📌 Introduction  
-This project was developed as part of the **NISR 2025 Big Data Hackathon**. The hackathon engages university students in designing innovative data-driven solutions for Rwanda’s national development challenges.  
+This project was developed as part of the **NISR 2025 Big Data Hackathon**, which engages university students in designing innovative data-driven solutions for Rwanda’s national development challenges.  
 
 We chose **Track 2: Ending Hidden Hunger**, where the challenge is to **address micronutrient deficiencies** by mapping malnutrition hotspots, developing predictive models for malnutrition risk, analyzing root causes of stunting and deficiencies, recommending interventions, and proposing policy briefs for local implementation.  
 
@@ -19,16 +19,26 @@ We chose **Track 2: Ending Hidden Hunger**, where the challenge is to **address 
 
 ## 🛠️ Methodology  
 1. **Data Collection**  
-   - Sources: Rwanda Demographic and Health Survey(RDHS).  
+   - Sources: Rwanda Demographic and Health Survey (RDHS) datasets.  
+
 2. **Data Preprocessing & Cleaning**  
-   - Handling missing values, converting z-scores, defining malnutrition based on thresholds (e.g., z-scores < -2).  
+   - Handle missing values.  
+   - Convert z-scores to standardized values.  
+   - Define malnutrition based on thresholds (e.g., z-scores < -2).  
+
 3. **Exploratory Data Analysis (EDA)**  
-   - Analyze trends by age, districts, and factors like wealth, education, water sources, and toilet types.  
+   - Analyze trends by age, districts, wealth, education, water sources, and toilet types.  
+
 4. **Predictive Modeling**  
-   - We built a model to predict stunting risk (e.g., using Random Forest).  
+   - Build models to predict stunting and malnutrition risk (Random Forest, etc.).  
+
 5. **Visualization & Tools**  
-   - Interactive charts: Pie for overall malnutrition, bar for age/districts/causes, line for trends over time (using Plotly Express and Matplotlib).  
-   - Geospatial mapping for hotspots.  
+   - Interactive charts using Plotly Express:  
+     - Pie charts for overall malnutrition.  
+     - Bar charts for districts, age groups, and causes.  
+     - Line charts for trends over time.  
+   - Geospatial mapping of hotspots using GeoJSON and geopandas.  
+
 6. **Insights & Recommendations**  
    - Identify root causes and high-risk areas.  
    - Provide sector-specific interventions and policy briefs.  
@@ -36,30 +46,32 @@ We chose **Track 2: Ending Hidden Hunger**, where the challenge is to **address 
 ---
 
 ## 📊 Expected Deliverables  
-- A **data science pipeline** (from data loading to prediction and visualization).  
-- An **interactive dashboard** for viewing malnutrition hotspots and trends.  
-- A **predictive model** for malnutrition risk assessment.  
-- **Recommendations and policy briefs** for interventions in health, agriculture, and education sectors.  
+- A **complete data science pipeline**: data loading → preprocessing → modeling → visualization.  
+- An **interactive dashboard** for exploring malnutrition hotspots and trends.  
+- A **predictive model** for assessing malnutrition risk.  
+- **Recommendations and policy briefs** for health, agriculture, and education sectors.  
 
 ---
 
 ## 🚀 Tech Stack  
 - **Languages**: Python (Pandas, NumPy, Scikit-learn)  
 - **Visualization**: Plotly Express, Matplotlib  
-- **Data**: NISR datasets (e.g., RDHS-based CSV files)  
+- **Data**: NISR datasets (RDHS-based CSVs)  
 - **Collaboration**: GitHub, Jupyter Notebooks  
+- **Deployment**: Dash, Dash Bootstrap Components  
 
 ---
 
 ## 👥 Team  
-### Team name: [Data Duos]  
+### Team Name: Data Duos  
 - Iradukunda Elysee  
 - Gihozo Christian  
 
 ---
 
 ## 📌 How to Run the Project  
+
 1. Clone this repository:  
    ```bash
-   git clone https://github.com/yourusername/nisr-hackathon-2025.git
-   cd nisr-hackathon-2025
+   git clone https://github.com/Kali-AI02/Data_Duo_NISR_project-.git
+   cd Data_Duo_NISR_project-
