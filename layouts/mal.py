@@ -5,7 +5,7 @@ from dash import dcc, html
 
 def get_layout():
     # ===== Step 1 — Load dataset =====
-    fn = r"C:\Users\user\Desktop\NISR\Hackthon\nisr_dataset1.csv"  # update path
+    fn = r"C:\Users\user\Desktop\Elysee\Data_Duo_NISR_project-\assets\nisr_dataset1.csv"  # update path
     df_clean = pd.read_csv(fn)
 
     # ===== Step 2 — Calculate stunting rate by district =====

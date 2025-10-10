@@ -8,7 +8,7 @@ def get_layout_overview():
     # ===============================
     # Load dataset
     # ===============================
-    fn = r"C:\Users\user\Desktop\Elysee\Data_Duo_NISR_project-\nisr_dataset1.csv"
+    fn = r"C:\Users\user\Desktop\Elysee\Data_Duo_NISR_project-\assets\nisr_dataset1.csv"
     df = pd.read_csv(fn)
 
     # Convert z-scores to decimals

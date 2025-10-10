@@ -10,7 +10,7 @@ import dash_bootstrap_components as dbc
 # ===================================================
 def get_layout():
     # ===== Step 1 — Load and prepare dataset =====
-    fn = r"C:\Users\user\Desktop\Elysee\Data_Duo_NISR_project-\df_clean.csv"
+    fn = r"C:\Users\user\Desktop\Elysee\Data_Duo_NISR_project-\assets\nisr_dataset1.csv"
     try:
         df_clean = pd.read_csv(fn)
     except Exception as e:

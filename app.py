@@ -5,8 +5,19 @@ import pandas as pd
 from dash import Dash, html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
 
+# ===============================
+# Import layouts and recommendations
+# ===============================
 from layouts import stunting, mal
 from layouts.recommendations import get_recommendations_layout
+from layouts.model import get_layout as get_layout_model, FEATURES
+from layouts.overview import get_layout_overview
+from layouts.hotspot import get_layout as get_layout_hotspot
+
+# ===============================
+# Import chatbot
+# ===============================
+from chatbot import chatbot_btn, chatbot_box, register_callbacks
 
 # ===============================
 # Create Dash app
@@ -16,16 +27,8 @@ server = app.server
 app.title = "Rwanda Malnutrition Dashboard"
 
 # ===============================
-# Import layouts and constants
+# Register chatbot callbacks
 # ===============================
-from layouts.model import get_layout as get_layout_model, FEATURES
-from layouts.overview import get_layout_overview
-from layouts.hotspot import get_layout as get_layout_hotspot
-
-# ===============================
-# Import chatbot
-# ===============================
-from chatbot import chatbot_btn, chatbot_box, register_callbacks
 register_callbacks(app, FEATURES)
 
 # ===============================
@@ -52,10 +55,9 @@ except Exception:
 # ===============================
 navbar = dbc.Navbar(
     dbc.Container([
-        html.Div([
-            html.Img(src=f'data:image/png;base64,{logo_data}' if logo_data else None,
-                     style={"height": "45px", "width": "auto"})
-        ], className="d-flex align-items-center"),
+        html.Div([html.Img(src=f'data:image/png;base64,{logo_data}' if logo_data else None,
+                           style={"height": "45px", "width": "auto"})],
+                 className="d-flex align-items-center"),
         html.Div([
             dbc.DropdownMenu(
                 label="🌐 English",
@@ -145,8 +147,12 @@ def predict_stunting(n_clicks, *values):
         return f"Error predicting: {e}"
 
 # ===============================
+# Register Stunting Callbacks (from layouts/stunting.py)
+# ===============================
+stunting.register_callbacks_stunting(app)
+
+# ===============================
 # Run app
 # ===============================
 if __name__ == "__main__":
     app.run(debug=False)
-

@@ -6,12 +6,11 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from scipy.stats import chi2_contingency
-from app import app
 
 # ===============================
 # Load Cleaned Dataset
 # ===============================
-df_clean = pd.read_csv(r"C:\Users\user\Desktop\Elysee\Data_Duo_NISR_project-\df_clean.csv")
+df_clean = pd.read_csv("assets/df_clean.csv")  # use relative path for deployment
 
 # ===============================
 # Compute Stunting Indicator
@@ -153,7 +152,6 @@ def get_layout():
                         html.P(f"Unweighted national stunting rate: {unweighted_rate:.1f}%"),
                         html.P(f"Total children analyzed: {total_records}"),
                         html.Hr(),
-                        
                     ])
                 ]),
                 md=6
@@ -178,18 +176,21 @@ def get_layout():
 # ===============================
 # Callback for Pie Slice Click
 # ===============================
-@app.callback(
-    Output("stunting-click-info", "children"),
-    Input("stunting-pie", "clickData")
-)
-def display_click_info(clickData):
-    
-    label = clickData["points"][0]["label"]
-    if label == "Stunted":
-        count = df_clean["stunted"].sum()
-        weighted = (df_clean.loc[df_clean["stunted"] == 1, "weight"].sum() / df_clean["weight"].sum()) * 100
-    else:
-        count = len(df_clean) - df_clean["stunted"].sum()
-        weighted = (df_clean.loc[df_clean["stunted"] == 0, "weight"].sum() / df_clean["weight"].sum()) * 100
-
-    return f"{label} children: {count:,} ({weighted:.1f}% weighted)"
+# Remove the @app.callback decorator here.
+# Instead, define a function that returns the output and register callback in app.py
+def register_callbacks_stunting(app):
+    @app.callback(
+        Output("stunting-click-info", "children"),
+        Input("stunting-pie", "clickData")
+    )
+    def display_click_info(clickData):
+        if clickData is None:
+            return ""
+        label = clickData["points"][0]["label"]
+        if label == "Stunted":
+            count = df_clean["stunted"].sum()
+            weighted = (df_clean.loc[df_clean["stunted"] == 1, "weight"].sum() / df_clean["weight"].sum()) * 100
+        else:
+            count = len(df_clean) - df_clean["stunted"].sum()
+            weighted = (df_clean.loc[df_clean["stunted"] == 0, "weight"].sum() / df_clean["weight"].sum()) * 100
+        return f"{label} children: {count:,} ({weighted:.1f}% weighted)"
