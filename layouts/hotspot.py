@@ -1,4 +1,4 @@
-# layouts/hotspot.py
+
 import os
 import pandas as pd
 import geopandas as gpd
@@ -6,13 +6,9 @@ import plotly.express as px
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
-# ===================================================
-# Malnutrition Hotspot Layout Function
-# ===================================================
 def get_layout():
     current_dir = os.path.dirname(__file__)
 
-    # ===== Step 1 — Load and prepare dataset =====
     dataset_path = os.path.join(current_dir, "..", "assets", "nisr_dataset1.csv")
     if not os.path.exists(dataset_path):
         return html.Div([
@@ -22,15 +18,15 @@ def get_layout():
 
     df_clean = pd.read_csv(dataset_path)
 
-    # Ensure z-scores are numeric and rescale if needed
+  
     df_clean['height_for_age_zscore'] = pd.to_numeric(df_clean['height_for_age_zscore'], errors='coerce')
     if df_clean['height_for_age_zscore'].abs().max() > 10:
         df_clean['height_for_age_zscore'] = df_clean['height_for_age_zscore'] / 100
 
-    # Compute stunted flag
+  
     df_clean['stunted'] = df_clean['height_for_age_zscore'] < -2.0
 
-    # ===== Step 2 — Calculate stunting rate by district =====
+  
     if "district_code" not in df_clean.columns:
         return html.Div("Missing required column in dataset: 'district_code'.")
 
@@ -39,9 +35,8 @@ def get_layout():
         .mean()
         .reset_index(name="stunting_rate")
     )
-    district_stunting["stunting_rate"] *= 100  # Convert to percentage
+    district_stunting["stunting_rate"] *= 100  
 
-    # ===== Step 3 — Map district codes to names =====
     district_map = {
         11: "Nyarugenge", 12: "Gasabo", 13: "Kicukiro",
         21: "Nyanza", 22: "Gisagara", 23: "Nyaruguru", 24: "Huye",
@@ -54,7 +49,7 @@ def get_layout():
     }
     district_stunting["district_name"] = district_stunting["district_code"].map(district_map)
 
-    # ===== Step 4 — Load Rwanda GeoJSON map =====
+  
     geojson_path = os.path.join(current_dir, "..", "assets", "geoBoundaries-RWA-ADM2 (1).geojson")
 
     
@@ -68,7 +63,7 @@ def get_layout():
     if gdf.crs is None:
         gdf = gdf.set_crs("EPSG:4326")
 
-    # ===== Step 5 — Clean names and merge =====
+ 
     district_stunting['district_name_clean'] = district_stunting['district_name'].str.strip().str.lower()
     gdf['shapeName_clean'] = gdf['shapeName'].str.strip().str.lower()
 
@@ -79,7 +74,7 @@ def get_layout():
         how='left'
     )
 
-    # ===== Step 6 — Interactive Choropleth Map =====
+ 
     fig = px.choropleth_map(
         gdf,
         geojson=gdf.__geo_interface__,
@@ -101,7 +96,7 @@ def get_layout():
         height=650
     )
 
-    # ===== Step 7 — Build Dashboard Layout =====
+  
     layout = dbc.Container([
         html.H3("🗺️ Malnutrition Hotspot Analysis"),
         html.P("This interactive map shows estimated stunting rates across Rwandan districts."),
