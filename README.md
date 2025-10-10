@@ -1,4 +1,4 @@
-# NISR 2025 Big Data Hackathon – Track 2: Ending Hidden Hunger  
+# 🥗 NISR 2025 Big Data Hackathon – Track 2: Ending Hidden Hunger  
 
 ## 📌 Introduction  
 This project was developed as part of the **NISR 2025 Big Data Hackathon**. The hackathon engages university students in designing innovative data-driven solutions for Rwanda’s national development challenges.  
@@ -19,16 +19,19 @@ We chose **Track 2: Ending Hidden Hunger**, where the challenge is to **address 
 
 ## 🛠️ Methodology  
 1. **Data Collection**  
-   - Sources: Rwanda Demographic and Health Survey (RDHS).  
+   - Sources: Rwanda Demographic and Health Survey (RDHS) and other NISR datasets.  
 2. **Data Preprocessing & Cleaning**  
    - Handling missing values, converting z-scores, defining malnutrition based on thresholds (e.g., z-scores < -2).  
 3. **Exploratory Data Analysis (EDA)**  
    - Analyze trends by age, districts, and factors like wealth, education, water sources, and toilet types.  
 4. **Predictive Modeling**  
-   - We built a model to predict stunting risk (e.g., using Random Forest).  
+   - Model to predict stunting risk using Random Forest.  
 5. **Visualization & Tools**  
-   - Interactive charts: Pie for overall malnutrition, bar for age/districts/causes, line for trends over time (using Plotly Express and Matplotlib).  
-   - Geospatial mapping for hotspots.  
+   - Interactive charts:  
+     - Pie chart for overall malnutrition.  
+     - Bar chart for age/districts/causes.  
+     - Line chart for trends over time.  
+   - Geospatial mapping for hotspots using Rwanda district shapefiles.  
 6. **Insights & Recommendations**  
    - Identify root causes and high-risk areas.  
    - Provide sector-specific interventions and policy briefs.  
@@ -36,29 +39,37 @@ We chose **Track 2: Ending Hidden Hunger**, where the challenge is to **address 
 ---
 
 ## 📊 Expected Deliverables  
-- A **data science pipeline** (from data loading to prediction and visualization).  
+- A **data science pipeline** from data loading to prediction and visualization.  
 - An **interactive dashboard** for viewing malnutrition hotspots and trends.  
 - A **predictive model** for malnutrition risk assessment.  
 - **Recommendations and policy briefs** for interventions in health, agriculture, and education sectors.  
 
 ---
 
+## 🌐 Dashboard Access  
+You can view the interactive dashboard [here](https://your-dashboard-link.com)  
+
+> Replace the link above with your deployed Dash app URL.
+
+---
+
 ## 🚀 Tech Stack  
 - **Languages**: Python (Pandas, NumPy, Scikit-learn)  
 - **Visualization**: Plotly Express, Matplotlib  
-- **Data**: NISR datasets (e.g., RDHS-based CSV files)  
+- **Web Framework**: Dash, Dash Bootstrap Components  
+- **Data**: NISR datasets (RDHS-based CSV files)  
 - **Collaboration**: GitHub, Jupyter Notebooks  
 
 ---
 
 ## 👥 Team  
-### Team name: [Data Duos]  
+### Team Name: Data Duos  
 - Iradukunda Elysee  
 - Gihozo Christian  
 
 ---
 
-## 📌 How to Run the Project  
+## 📌 How to Run the Project Locally  
 1. Clone this repository:  
    ```bash
    git clone https://github.com/Kali-AI02/Data_Duo_NISR_project-.git
