@@ -74,3 +74,7 @@ You can view the interactive dashboard [here](https://your-dashboard-link.com)
    ```bash
    git clone https://github.com/Kali-AI02/Data_Duo_NISR_project-.git
    cd Data_Duo_NISR_project-
+
+pip install -r requirements.txt
+python app.py
+
