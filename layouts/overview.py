@@ -1,4 +1,5 @@
 # layouts/overview.py
+import os
 import pandas as pd
 import plotly.express as px
 from dash import html, dcc
@@ -6,9 +7,10 @@ import dash_bootstrap_components as dbc
 
 def get_layout_overview():
     # ===============================
-    # Load dataset
+    # Load dataset (relative path)
     # ===============================
-    fn = r"C:\Users\user\Desktop\Elysee\Data_Duo_NISR_project-\assets\nisr_dataset1.csv"
+    current_dir = os.path.dirname(__file__)
+    fn = os.path.join(current_dir, "..", "assets", "nisr_dataset1.csv")
     df = pd.read_csv(fn)
 
     # Convert z-scores to decimals

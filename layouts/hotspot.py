@@ -1,4 +1,5 @@
 # layouts/hotspot.py
+import os
 import pandas as pd
 import geopandas as gpd
 import plotly.express as px
@@ -10,7 +11,9 @@ import dash_bootstrap_components as dbc
 # ===================================================
 def get_layout():
     # ===== Step 1 — Load and prepare dataset =====
-    fn = r"C:\Users\user\Desktop\Elysee\Data_Duo_NISR_project-\assets\nisr_dataset1.csv"
+    current_dir = os.path.dirname(__file__)
+    fn = os.path.join(current_dir, "..", "assets", "nisr_dataset1.csv")
+
     try:
         df_clean = pd.read_csv(fn)
     except Exception as e:
@@ -18,7 +21,7 @@ def get_layout():
             html.H3("Error loading dataset"),
             html.P(str(e))
         ])
-    
+
     # Ensure z-scores are numeric
     df_clean['height_for_age_zscore'] = pd.to_numeric(df_clean['height_for_age_zscore'], errors='coerce')
 
@@ -30,8 +33,8 @@ def get_layout():
     df_clean['stunted'] = df_clean['height_for_age_zscore'] < -2.0
 
     # ===== Step 2 — Calculate stunting rate by district =====
-    if "district_code" not in df_clean.columns or "height_for_age_zscore" not in df_clean.columns:
-        return html.Div("Missing required columns in dataset: 'district_code', 'height_for_age_zscore'.")
+    if "district_code" not in df_clean.columns:
+        return html.Div("Missing required column in dataset: 'district_code'.")
 
     district_stunting = (
         df_clean.groupby("district_code")["stunted"]
@@ -53,8 +56,8 @@ def get_layout():
     }
     district_stunting["district_name"] = district_stunting["district_code"].map(district_map)
 
-    # ===== Step 4 — Load Rwanda map =====
-    geo_path = r"C:\Users\user\Desktop\NISR\Hackthon\geoBoundaries-RWA-ADM2 (1).geojson"
+    # ===== Step 4 — Load Rwanda GeoJSON map =====
+    geo_path = os.path.join(current_dir, "..", "assets", "geoBoundaries-RWA-ADM2.geojson")
     try:
         gdf = gpd.read_file(geo_path)
     except Exception as e:
@@ -62,7 +65,7 @@ def get_layout():
             html.H3("Error loading GeoJSON map"),
             html.P(str(e))
         ])
-    
+
     if gdf.crs is None:
         gdf = gdf.set_crs("EPSG:4326")
 
