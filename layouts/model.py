@@ -1,4 +1,4 @@
-# layouts/model.py
+
 import dash
 from dash import html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
@@ -6,9 +6,7 @@ import joblib
 import pandas as pd
 import numpy as np
 
-# ========================
-# Load trained model
-# ========================
+
 MODEL_PATH = "assets/best_stunting_model_hgb_no_impute.joblib"
 try:
     model = joblib.load(MODEL_PATH)
@@ -16,9 +14,6 @@ except Exception as e:
     model = None
     print(f"⚠️ Error loading model: {e}")
 
-# ========================
-# Features
-# ========================
 FEATURES = [
     "wealth_index",
     "mother_education_level",
@@ -29,9 +24,7 @@ FEATURES = [
     "region_code"
 ]
 
-# ========================
-# Layout
-# ========================
+
 def get_layout():
     input_fields = []
     for feat in FEATURES:
@@ -64,9 +57,7 @@ def get_layout():
     return layout
 
 
-# ========================
-# Callbacks
-# ========================
+
 def register_callbacks(app):
     @app.callback(
         Output("prediction-output", "children"),
