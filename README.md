@@ -30,8 +30,7 @@ We chose **Track 2: Ending Hidden Hunger**, where the challenge is to **address 
    - Interactive charts:  
      - Pie chart for overall malnutrition.  
      - Bar chart for age/districts/causes.  
-     - Line chart for trends over time.  
-   - Geospatial mapping for hotspots using Rwanda district shapefiles.  
+     - Geospatial mapping for hotspots using Rwanda district shapefiles.  
 6. **Insights & Recommendations**  
    - Identify root causes and high-risk areas.  
    - Provide sector-specific interventions and policy briefs.  
@@ -52,7 +51,7 @@ You can view the interactive dashboard [here](https://data-duo-nisr-project.onre
 ---
 
 ## 🚀 Tech Stack  
-- **Languages**: Python (Pandas, NumPy, Scikit-learn)  
+- **Languages**: Python 
 - **Visualization**: Plotly Express, Matplotlib  
 - **Web Framework**: Dash, Dash Bootstrap Components  
 - **Data**: NISR datasets (RDHS-based CSV files)  
